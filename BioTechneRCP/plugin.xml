@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="com.biotechnercp.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="com.biotechnercp.Perspective"
+            name="Perspective"
+            id="BioTechneRPC.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="com.biotechnercp.view.SampleView"
+            name="Sample"
+            id="BioTechneRPC.view"
+            inject="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="*">
+         <view
+               id="BioTechneRPC.view"
+               minimized="false"
+               relationship="left"
+               standalone="true"
+               relative="org.eclipse.ui.editorss">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               label="File">
+            <command
+                  commandId="org.eclipse.ui.file.exit"
+                  label="Exit">
+            </command>
+         </menu>
+         
+         <menu label="Actions">
+	        <command
+	            commandId="com.biotechnercp.command.addSample"
+	            label="Add Sample"/>
+	        <command
+	            commandId="com.biotechnercp.command.editSample"
+	            label="Edit Sample"/>
+            <command
+	            commandId="com.biotechnercp.command.deleteSample"
+	            label="Delete Sample"/>
+	    </menu>
+	    
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+        <toolbar id="com.biotechnercp.toolbar">
+            <command
+                commandId="com.biotechnercp.command.addSample"
+                label="Add Sample"
+                style="push"/>
+            <command
+                commandId="com.biotechnercp.command.editSample"
+                label="Edit Sample"
+                style="push"/>
+            <command
+                commandId="com.biotechnercp.command.deleteSample"
+                label="Edit Sample"
+                style="push"/>
+        </toolbar>
+    </menuContribution>
+   
+   </extension>
+   
+   <extension point="org.eclipse.ui.commands">
+	    <command
+	        id="com.biotechnercp.command.addSample"
+	        name="Add Sample"/>
+	
+	    <command
+	        id="com.biotechnercp.command.editSample"
+	        name="Edit Sample"/>
+	        
+         <command
+	        id="com.biotechnercp.command.deleteSample"
+	        name="Delete Sample"/>
+	</extension>
+	
+	<extension point="org.eclipse.ui.handlers">
+	    <handler
+	        commandId="com.biotechnercp.command.addSample"
+	        class="com.biotechnercp.handler.sample.AddSampleHandler"/>
+	        <handler
+	        commandId="com.biotechnercp.command.editSample"
+	        class="com.biotechnercp.handler.sample.EditSampleHandler"/>
+	        <handler
+	        commandId="com.biotechnercp.command.deleteSample"
+	        class="com.biotechnercp.handler.sample.DeleteSampleHandler"/>
+	</extension>
+ <extension
+       id="combiotechnercpproduct"
+       point="org.eclipse.core.runtime.products">
+    <product
+          application="com.biotechnercp.application"
+          name="BioTechneApp">
+    </product>
+ </extension>
+ <extension
+       id="biotechneapp"
+       point="org.eclipse.core.runtime.products">
+    <product
+          application="org.eclipse.ui.ide.workbench"
+          name="BioTechneApp">
+    </product>
+ </extension>
+
+</plugin>
