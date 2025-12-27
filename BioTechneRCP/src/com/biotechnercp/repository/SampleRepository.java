@@ -18,7 +18,7 @@ public class SampleRepository {
 	
 	private SampleRepository() {
 		sampleTable = new HashSet<>();
-		sequence = 0L;
+		sequence = 1L;
 	}
 	
 	

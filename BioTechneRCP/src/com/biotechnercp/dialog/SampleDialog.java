@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import com.biotechnercp.enumaration.SampleActionEnum;
 import com.biotechnercp.model.Sample;
 
 public class SampleDialog extends TitleAreaDialog {
@@ -22,21 +23,24 @@ public class SampleDialog extends TitleAreaDialog {
     private DateTime dateTime;
 
     private Sample sample;
+    private String title;
 
-    public SampleDialog(Shell parentShell, Sample sample) {
+    public SampleDialog(Shell parentShell, Sample sample, SampleActionEnum sae) {
         super(parentShell);
         this.sample = sample;
+        this.title = sae.getTitle();
     }
 
     @Override
     protected Control createDialogArea(Composite parent) {
     	 Composite container = new Composite(parent, SWT.NONE);
          container.setLayoutData(new GridData(GridData.FILL_BOTH));
-
+     	 setTitle(title);
          GridLayout layout = new GridLayout(2, false);
          layout.marginWidth = 10;
          layout.marginHeight = 10;
          layout.horizontalSpacing = 10;
+         
          container.setLayout(layout);
 
          Label nameLabel = new Label(container, SWT.NONE);

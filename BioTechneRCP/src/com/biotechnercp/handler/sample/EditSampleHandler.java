@@ -12,6 +12,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import com.biotechnercp.dialog.SampleDialog;
+import com.biotechnercp.enumaration.SampleActionEnum;
 import com.biotechnercp.model.Sample;
 import com.biotechnercp.service.SampleService;
 import com.biotechnercp.view.SampleView;
@@ -27,7 +28,7 @@ public class EditSampleHandler extends AbstractHandler {
 			    window.getSelectionService().getSelection();
 		if (selection.isEmpty()) {
 			MessageDialog.openWarning( window.getShell(),
-	                "Warning Delete",
+	                "Edit",
 	                "No samples selected");
 			return null;
 		}
@@ -37,7 +38,7 @@ public class EditSampleHandler extends AbstractHandler {
 		            .getFirstElement();
 
 		    SampleDialog dialog =
-		        new SampleDialog(window.getShell(), sample);
+		        new SampleDialog(window.getShell(), sample, SampleActionEnum.EDIT);
 
 		    if (dialog.open() == Window.OK) {
 		    	try {

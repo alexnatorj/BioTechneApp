@@ -25,7 +25,7 @@ public class DeleteSampleHandler extends AbstractHandler {
 			    window.getSelectionService().getSelection();
 			if (selection.isEmpty()) {
 				MessageDialog.openWarning( window.getShell(),
-		                "Warning Delete",
+		                "Delete",
 		                "No samples selected");
 				return null;
 			}

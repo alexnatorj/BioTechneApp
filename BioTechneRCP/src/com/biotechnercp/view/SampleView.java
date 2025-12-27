@@ -8,6 +8,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -17,6 +18,7 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.part.ViewPart;
 
+import com.biotechnercp.enumaration.SampleActionEnum;
 import com.biotechnercp.model.Sample;
 import com.biotechnercp.repository.SampleRepository;
 
@@ -32,7 +34,7 @@ public class SampleView extends ViewPart {
 
 		createToolbarButtons(parent);
 		viewer = new TableViewer(parent, SWT.BORDER | SWT.FULL_SELECTION);
-
+		viewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		viewer.getTable().setHeaderVisible(true);
 		viewer.getTable().setLinesVisible(true);
 		createSampleColumns();
@@ -78,13 +80,13 @@ public class SampleView extends ViewPart {
 	private void createToolbarButtons(Composite parent) {
 		ToolBar toolbar = new ToolBar(parent, SWT.FLAT | SWT.WRAP);
 	    toolbar.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
-	    
+	    toolbar.setBackground(new Color(255, 255, 255));
 	    toolbar.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
 	    
 	    
-	    createToolItem(toolbar, "Add Sample", "com.biotechnercp.command.addSample");
-	    createToolItem(toolbar, "Edit Sample", "com.biotechnercp.command.editSample");
-	    createToolItem(toolbar, "Delete Sample", "com.biotechnercp.command.deleteSample");
+	    createToolItem(toolbar, SampleActionEnum.ADD.getTitle(), SampleActionEnum.ADD.getCommandId());
+	    createToolItem(toolbar, SampleActionEnum.EDIT.getTitle(), SampleActionEnum.EDIT.getCommandId());
+	    createToolItem(toolbar, SampleActionEnum.DELETE.getTitle(), SampleActionEnum.DELETE.getCommandId());
 	}
 	
 	private ToolItem createToolItem(ToolBar bar, String text, String commandId) {
